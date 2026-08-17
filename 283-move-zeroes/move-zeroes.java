@@ -1,13 +1,10 @@
+import java.util.*;
 class Solution {
     public void moveZeroes(int[] nums) {
-        int left = 0;
-        for (int right = 0; right < nums.length; right++) {
-            if (nums[right] != 0) {
-                int temp = nums[left];
-                nums[left] = nums[right];
-                nums[right] = temp;
-                left++;
-            }
-        }
+        int[] result = Arrays.stream(nums)
+                .filter(x -> x != 0)
+                .toArray();
+        System.arraycopy(result, 0, nums, 0, result.length);
+        Arrays.fill(nums, result.length, nums.length, 0);
     }
 }
